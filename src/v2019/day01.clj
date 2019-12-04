@@ -3,13 +3,19 @@
 ;; Needed for IO operations
 (use 'clojure.java.io)
 
+;; Fuel consumption
+(defn fuel-consumption
+  [mass]
+
+  (- (Math/floor (/ mass 3)) 2))
+
 ;; Read 1 line at a time
 (defn read-line-from-file
   [file]
 
   (with-open [rdr (reader file)]
     (doseq [line (line-seq rdr)]
-      (println line))))
+      (println line " - " (fuel-consumption (Integer/parseInt line))))))
 
 (defn day1
   "I don't do a whole lot."
